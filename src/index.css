@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* suas variáveis HSL para claro */
+    --background: 35 33% 96%;
+    --foreground: 40 10% 15%;
+    /* ...demais tokens... */
+  }
+
+  .dark {
+    /* suas variáveis HSL para dark */
+    --background: 40 10% 10%;
+    --foreground: 35 33% 92%;
+    /* ...demais tokens... */
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; font-family: 'Lora','Georgia',serif; }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display',serif; }
+}
+
+@layer components {
+  .vintage-paper { /* textura SVG inline */ }
+  .btn-primary { @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5; }
+  .btn-outline { @apply border border-primary bg-transparent text-primary hover:bg-primary/10 shadow-sm hover:shadow-md transition-all; }
+}
