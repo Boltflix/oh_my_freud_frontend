@@ -5,14 +5,15 @@
 
 /* ============================
    Tema Oh My Freud! (dark + dourado)
+   Funciona sobre as classes que você já usa:
+   .card, .btn, .small, inputs, etc.
    ============================ */
 
 :root {
-  /* paleta */
   --bg: #14110f;              /* fundo escuro */
-  --panel: #1c1815;           /* painel */
-  --border: rgba(255,255,255,.06);
-  --fg: #f2eadf;              /* texto */
+  --panel: #1c1815;           /* painel/card */
+  --border: rgba(255,255,255,.08);
+  --fg: #f2eadf;              /* texto principal */
   --muted: #b9b0a6;           /* texto secundário */
 
   --gold: #d4a049;            /* primária */
@@ -35,16 +36,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Container central das páginas (Auth etc.) */
-.of-container {
+/* ===== Layout básico para páginas ===== */
+.page, .of-container {
   min-height: 100dvh;
   display: grid;
   place-items: center;
   padding: 32px 16px;
 }
 
-/* Painel/card */
-.of-panel {
+/* ===== Card/Painel padrão ===== */
+.card,
+body > div > form:not(.unstyled-form) { /* fallback: se a página renderiza um <form> “solto”, vira painel */
   width: 100%;
   max-width: 780px;
   padding: 28px;
@@ -54,104 +56,82 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* Título “Oh My Freud!” */
-.of-title {
-  margin: 0 0 6px;
-  font-size: clamp(28px, 5vw, 44px);
-  line-height: 1.1;
-  text-align: center;
+/* Títulos e textos */
+h1, h2, h3 {
+  margin: 0 0 10px;
   font-weight: 800;
-  letter-spacing: .3px;
-  color: var(--fg);
-}
-
-/* Subtítulo */
-.of-sub {
-  text-align: center;
-  color: var(--muted);
-  margin: 0 0 22px;
-}
-
-/* Botões */
-.of-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-weight: 700;
   letter-spacing: .2px;
-  cursor: pointer;
-  transition: transform .03s ease, background .15s ease, border-color .15s ease, color .15s ease;
-  user-select: none;
-  text-decoration: none;
+  line-height: 1.15;
 }
+h1 { font-size: clamp(28px, 5vw, 44px); }
+.small { color: var(--muted); font-size: .95rem; }
+.space { height: 12px; }
 
-.of-btn:active { transform: translateY(1px); }
-
-.of-btn--gold {
+/* ===== Botões ===== */
+.btn,
+button:not(.unstyled-btn) {
+  display: inline-block;
   background: var(--gold);
-  border: 1px solid var(--gold);
   color: #1b120a;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--gold);
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1;
+  transition: background .15s ease, border-color .15s ease, transform .03s ease;
+  cursor: pointer;
 }
-.of-btn--gold:hover { background: var(--gold-600); border-color: var(--gold-600); }
+.btn:hover,
+button:not(.unstyled-btn):hover { background: var(--gold-600); border-color: var(--gold-600); }
+.btn:active,
+button:not(.unstyled-btn):active { transform: translateY(1px); }
 
-.of-btn--ghost {
+/* Variante “fantasma” se você usar .btn--ghost */
+.btn--ghost {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--fg);
 }
-.of-btn--ghost:hover { border-color: var(--gold-600); color: var(--fg); }
+.btn--ghost:hover { border-color: var(--gold-600); color: var(--fg); }
 
-/* Linha separadora entre blocos de botões */
-.of-gap { height: 12px; }
-
-/* Campo de formulário */
-.of-field {
-  display: grid;
-  gap: 8px;
-  margin: 10px 0;
-}
-
-.of-label {
-  color: var(--muted);
-  font-size: .95rem;
-}
-
-.of-input {
+/* ===== Inputs ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
   width: 100%;
+  max-width: 360px;
   height: 42px;
+  padding: 0 12px;
   border-radius: 12px;
   border: 1px solid var(--border);
   background: #161310;
   color: var(--fg);
-  padding: 0 12px;
   outline: none;
 }
-.of-input:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-color: var(--gold-600);
   box-shadow: 0 0 0 3px rgba(212,160,73,.15);
 }
 
-/* Rodapé/termos */
-.of-terms {
-  margin-top: 18px;
-  text-align: center;
+/* ===== Agrupamentos rápidos ===== */
+.stack { display: grid; gap: 12px; }
+.center { display: grid; justify-items: center; }
+
+/* ===== Links/termos ===== */
+.text-muted { color: var(--muted); }
+a { color: var(--gold-600); }
+a:hover { color: var(--gold-700); }
+
+/* ===== Ajustes mínimos de formulários em páginas “cruas” ===== */
+body > div > form:not(.unstyled-form) label {
+  display: block;
+  margin: 8px 0 6px;
   color: var(--muted);
-  font-size: .95rem;
 }
-.of-terms a { color: var(--gold-600); text-decoration: underline; }
-.of-terms a:hover { color: var(--gold-700); }
-
-/* “Continuar como convidado” */
-.of-guest {
-  margin-top: 18px;
-  text-align: center;
-  color: var(--gold-600);
-  font-weight: 700;
-}
-.of-guest:hover { color: var(--gold-700); }
-
-/* Utilidades simples */
-.of-stack { display: grid; gap: 12px; }
-.of-center { display: grid; justify-items: center; }
+body > div > form:not(.unstyled-form) .btn,
+body > div > form:not(.unstyled-form) button { margin-top: 12px; }
