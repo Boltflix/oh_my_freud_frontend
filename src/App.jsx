@@ -13,7 +13,7 @@ import Progress from '@/pages/Progress';
 import Profile from '@/pages/Profile';
 import Admin from '@/pages/Admin';
 import Paywall from '@/pages/Paywall';
-import MainLayout from '@/components/layout/MainLayout.jsx';
+import MainLayout from '@/components/layouts/MainLayout.jsx';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '@/context/AuthContext';
 
