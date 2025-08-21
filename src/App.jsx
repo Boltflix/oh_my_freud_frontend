@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
-import Onboarding from '@/pages/Onboarding';
+import Onboarding from '@/pages/Onboarding.jsx';
 import Auth from '@/pages/Auth';
 import Home from '@/pages/Home';
 import DreamEntry from '@/pages/DreamEntry';
